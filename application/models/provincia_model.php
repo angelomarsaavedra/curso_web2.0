@@ -21,4 +21,8 @@ class provincia_model extends CI_Model {
 		$q = $this->db->get();
 		return $q->result_array();
 	}
+
+	public function agregar($data = array()) {
+		$this->db->insert($this->tabla, $data);
+	}
 }

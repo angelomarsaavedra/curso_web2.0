@@ -12,9 +12,14 @@ echo base_url()?>admin/provincia/agregar"
 <?php
 foreach ($provincias as $provincia) {
 	?><tr>
-						<td><?php echo $provincia['id']?></td>
-						<td><?php echo $provincia['nombre']?></td>
-					</tr><?php
+			<td><?php echo $provincia['id']?></td>
+			<td><?php echo $provincia['nombre']?></td>
+			<td><a href="<?php
+	echo base_url().
+	'admin/provincia/editar/'.
+	$provincia['id']?>"
+					class="btn btn-primary">Editar</a></td>
+		</tr><?php
 }
 ?>
 </table>

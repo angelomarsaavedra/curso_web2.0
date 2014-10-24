@@ -12,6 +12,36 @@ class Provincia extends MY_Controller {
 	}
 
 	public function agregar() {
-		$this->load->view('admin/provincia/agregar');
+		$provincia = $this->input->post('provincia');
+		$data      = ['accion' => 'Agregar'];
+		if ($provincia) {
+			$data['nombre'] = $provincia;
+			#$data = array('provincia' => $provincia);
+			$this->provincia_model->agregar($data);
+			redirect('/admin/provincia/index');
+		} else {
+			$this->load->view('admin/provincia/formulario', $data);
+		}
+	}
+
+	public function editar($id = null) {
+		$provincia = $this->input->post('provincia');
+		$data      = ['accion' => 'Editar'];
+		if ($id) {
+			$data['reg'] = $this->provincia_model->get($id);
+		}
+
+		if (empty($data['reg'])) {
+			redirect('/admin/provincia/index');
+		}
+
+		if ($provincia and $id) {
+			$data['nombre'] = $provincia;
+			#$data = array('provincia' => $provincia);
+			$this->provincia_model->guardar($data, $id);
+			redirect('/admin/provincia/index');
+		} else {
+			$this->load->view('admin/provincia/formulario', $data);
+		}
 	}
 }

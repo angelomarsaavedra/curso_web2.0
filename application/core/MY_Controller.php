@@ -3,12 +3,14 @@
 
 class MY_Controller extends CI_Controller {
 	public $modelo = "";
+	public $a      = 0;
 
 	public function __construct() {
 		parent::__construct();
 		if ($this->modelo) {
 			$this->load->model($this->modelo);
 		}
+
 	}
 
 }
